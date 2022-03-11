@@ -1,5 +1,15 @@
 import React from "react";
-import {Text, TextInput, TouchableOpacity, Vibration, View} from "react-native";
+
+import {
+    Dismiss, 
+    Keyboard, 
+    Pressable, 
+    Text, 
+    TextInput, 
+    TouchableOpacity, 
+    Vibration, 
+    View } from "react-native";
+
 import {useState} from "react";
 import ResultadoIMC from "./ResultadoIMC/";
 import styles from "./styles";
@@ -40,7 +50,7 @@ export default function Form(){
     }
 
     return(
-        <View style={styles.formContext}>
+        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
             <View style={styles.formulario}>
                 <Text>Entre com sua Altura:</Text>
                 <Text style={styles.errorMessage}>{msgErro}</Text>
@@ -71,6 +81,6 @@ export default function Form(){
                 mensagemResultado={msg} 
                 valorResultado = {imc} 
             />
-        </View>
+        </Pressable>
     );
 }
