@@ -46,6 +46,20 @@ const styles = StyleSheet.create({
         width:"100%",
         height:"50%",
     },
+    listaImc:{
+        marginTop:20,
+    },
+    itemListaImc:{
+        fontSize:28,
+        color:"red",
+        height:50,
+        width:"100%",
+        paddingRight:20,
+    },
+    textItemImc:{
+        color:"red",
+        fontSize:16,
+    },
 
 });
 

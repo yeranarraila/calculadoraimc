@@ -1,7 +1,8 @@
 import React from "react";
 
 import {
-    Dismiss, 
+    Dismiss,
+    FlatList, 
     Keyboard, 
     Pressable, 
     Text, 
@@ -25,6 +26,7 @@ export default function Form(){
     const[imc,setImc] = useState(null);
     const[textButton,setTextButton] = useState("Calcular");
     const[msgErro,setMsgErro] = useState(null);
+    const[imcList,setImcList] = useState([]);
 
     function validaIMCValues(){
         if(altura != null && peso != null){
@@ -50,7 +52,9 @@ export default function Form(){
             //formatar peso e altura para que fiquem com .
             let alturaFormatada = altura.replace(",",".");
             let pesoFormatado = peso.replace(",",".");
-            setImc((pesoFormatado/(alturaFormatada*alturaFormatada)).toFixed(2));
+            let totalImc = ((pesoFormatado/(alturaFormatada*alturaFormatada)).toFixed(2));
+            setImcList((arr) => [...arr, {id: new Date().getTime(), imc:totalImc}]);
+            setImc(totalImc);
         }
 
         return imc;
@@ -101,6 +105,21 @@ export default function Form(){
                     </TouchableOpacity>
                 </View>
             }
+            <FlatList 
+                showsVerticalScrollIndicator = {false}
+                style={styles.listaImc}
+                data={imcList.reverse()}
+                renderItem = {({item}) => {
+                    return(
+                        <Text style={styles.itemListaImc}>
+                            <Text style={styles.textItemImc}>IMC:</Text>
+                            {item.imc}
+                        </Text>
+
+                    );
+                } }
+                keyExtractor={(item) => item.id}
+            ></FlatList>
         </View>
     );
 }
