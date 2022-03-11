@@ -18,6 +18,24 @@ const styles = StyleSheet.create({
         fontWeight:"bold",
         color:"#ff0043",
     },
+    boxShared:{
+        width:"100%",
+        alignItems:"center",
+        marginBottom:10,
+    },
+    textShared:{
+        color:"#ffffff",
+        fontWeight:"bold",
+        paddingHorizontal:30,
+    },
+    botaoShared:{
+        backgroundColor:"#1877f2",
+        borderRadius:50,
+        paddingTop:5,
+        paddingBottom:5,
+        marginLeft:2,
+        marginTop:1,
+    },
 });
 
 

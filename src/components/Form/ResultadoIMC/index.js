@@ -18,11 +18,14 @@ export default function ResultadoIMC(resultado){
 
     return(
         <View style={styles.resultImc}>
-            <View>
+            <View style={styles.boxShared}>
                 {
                     resultado.valorResultado != null ?
-                    <TouchableOpacity>
-                        <Text>Share</Text>
+                    <TouchableOpacity
+                        style={styles.botaoShared}
+                        onPress={onShare}
+                    >
+                        <Text style={styles.textShared}>Share</Text>
                     </TouchableOpacity>
                     :
                     <View/>
