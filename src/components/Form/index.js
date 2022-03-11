@@ -46,12 +46,22 @@ export default function Form(){
 
     function calculaIMC(){
         validaIMCValues();
-        return setImc((peso/(altura*altura)).toFixed(2));
+        if(altura != null && peso != null){
+            //formatar peso e altura para que fiquem com .
+            let alturaFormatada = altura.replace(",",".");
+            let pesoFormatado = peso.replace(",",".");
+            setImc((pesoFormatado/(alturaFormatada*alturaFormatada)).toFixed(2));
+        }
+
+        return imc;
     }
 
     return(
-        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
-            <View style={styles.formulario}>
+        <View style={styles.formContext}>
+
+            { imc == null ? 
+
+            <Pressable onPress={Keyboard.dismiss} style={styles.formulario}>            
                 <Text>Entre com sua Altura:</Text>
                 <Text style={styles.errorMessage}>{msgErro}</Text>
                 <TextInput 
@@ -76,11 +86,21 @@ export default function Form(){
                 >
                     <Text style={styles.textButtonCalc}>{textButton}</Text>
                 </TouchableOpacity>
-            </View>
-            <ResultadoIMC 
-                mensagemResultado={msg} 
-                valorResultado = {imc} 
-            />
-        </Pressable>
+            </Pressable>
+            :
+                <View style={styles.exibeImc}>
+                    <ResultadoIMC 
+                        mensagemResultado={msg} 
+                        valorResultado = {imc} 
+                    />
+                     <TouchableOpacity 
+                        style={styles.buttonCalc}
+                        onPress= {() => calculaIMC()}
+                    >
+                    <Text style={styles.textButtonCalc}>{textButton}</Text>
+                    </TouchableOpacity>
+                </View>
+            }
+        </View>
     );
 }
